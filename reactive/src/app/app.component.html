@@ -1,0 +1,21 @@
+<h1>Add Company</h1>
+<button type="button" class="btn btn-primary">Add Company</button>
+<form class="form" [formGroup]="addCompanyForm" (ngSubmit)="onSubmit()">
+
+    <!-- fetching from the input of get custom fields -->
+    <div  *ngFor=" let data of dataToRender">
+        <label for="{{data}}">{{data}}</label>
+    
+        <!-- Render different input types based on field type -->
+        <ng-container *ngIf="typeOfValue(data)==='number'">
+        
+                <input type="number" [id]="data" [formControlName]="data">
+           
+        </ng-container>
+
+          <!-- Default to a text input if field type is not recognized -->
+          <input  type="text" [id]="data" [formControlName]="data">
+        
+      </div>
+      <button type="submit">Submit</button>
+</form>
